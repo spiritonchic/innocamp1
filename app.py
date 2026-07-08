@@ -10,6 +10,10 @@ def index():
 def forecast():
     return render_template("forecast.html", forecast="")
 
+@app.route('/contacts')
+def contacts():
+    return render_template("contacts.html")
+
 @app.route('/get_forecast', methods=['POST'])
 def get_forecast():
     city = request.form['city']
