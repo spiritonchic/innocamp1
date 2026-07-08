@@ -23,9 +23,17 @@ def get_forecast():
     response = requests.get(url)
     data = response.json()
     if response.status_code != 200:
-        return render_template("forecast.html", forecast="Такого города не найдено.", temperature=15)
+        return render_template("forecast.html", forecast="Такого города не найдено.", temperature=15, error=True)
     temperature = data['current']['temp_c']
     forecast = f"Прогноз погоды для {city}: \n Температура: {temperature}°C"
-    return render_template("forecast.html", forecast=forecast, temperature=temperature)
+    return render_template("forecast.html", forecast=forecast, temperature=temperature, error = False)
+
+@app.route('/submit_feedback', methods=['POST'])
+def submit_feedback():
+    name = request.form['name']
+    problem = request.form['problem']
+    with open('feedback.json', 'a', encoding='utf-8') as f:
+        json.dump({'name': name, 'problem': problem}, f, ensure_ascii=False)
+    return render_template("index.html")
 
 app.run(debug=True)

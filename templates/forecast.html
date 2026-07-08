@@ -11,6 +11,18 @@
     <p>{{ forecast }}</p>
     {% endif %}
 </form>
+
+{% if error %}
+<form method="POST" action="{{ url_for('submit_feedback') }}">
+    Ваше имя: <input type="text"
+                  name="name"><br>
+    Опишите проблему: <input type="text"
+                  name="problem"><br>
+    <input type="submit" value="Отправить фидбэк">
+
+</form>
+{% endif %}
+
 <a href="{{ url_for('index') }}">
         <input type="submit" value="Вернуться в главное меню">
 </a>
