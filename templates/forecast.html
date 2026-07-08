@@ -1,1 +1,7 @@
-Тут прогноз погоды будет отображаться
+<form method="POST" action="{{ url_for('get_forecast') }}">
+     Город: <input type="text"
+                  name="city"><br>
+    <input type="submit" value="Узнать прогноз погоды">
+
+    <p>{{ forecast }}</p>
+</form>
