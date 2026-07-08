@@ -3,7 +3,13 @@
                   name="city"><br>
     <input type="submit" value="Узнать прогноз погоды">
 
+    {% if temperature > 20 %}
+    <p>{{ forecast }} ☀️</p>
+    {% elif temperature < 10 %}
+    <p>{{ forecast }} ❄️</p>
+    {% else %}
     <p>{{ forecast }}</p>
+    {% endif %}
 </form>
 <a href="{{ url_for('index') }}">
         <input type="submit" value="Вернуться в главное меню">
